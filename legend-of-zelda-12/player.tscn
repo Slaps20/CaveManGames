@@ -1,0 +1,140 @@
+[gd_scene load_steps=10 format=3 uid="uid://bq2rr7xarnfm8"]
+
+[ext_resource type="Texture2D" uid="uid://bq8ql01b4i8tw" path="res://caveman.png" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://bu4e7bsycf75i" path="res://player.gd" id="1_onrkg"]
+[ext_resource type="Texture2D" uid="uid://bckkh26kuts1i" path="res://club.png" id="3_i3pqv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
+size = Vector2(47, 116)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hqtel"]
+radius = 20.5774
+height = 175.375
+
+[sub_resource type="Animation" id="Animation_2hs0m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("club:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("club:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_i3pqv"]
+resource_name = "club_swing_left"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("club:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(5, 0), Vector2(-40, 11), Vector2(5, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("club:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.174533, -1.22173, 0.174533]
+}
+
+[sub_resource type="Animation" id="Animation_sweqy"]
+resource_name = "club_swing_right"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("club:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.5708, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("club:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(50, 25), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1jxqw"]
+_data = {
+&"RESET": SubResource("Animation_2hs0m"),
+&"club_swing_left": SubResource("Animation_i3pqv"),
+&"club_swing_right": SubResource("Animation_sweqy")
+}
+
+[node name="player" type="CharacterBody2D" groups=["player"]]
+scale = Vector2(0.7, 0.7)
+script = ExtResource("1_onrkg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("1_4flbx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 2)
+scale = Vector2(0.7, 0.7)
+shape = SubResource("RectangleShape2D_onrkg")
+
+[node name="club" type="Node2D" parent="."]
+scale = Vector2(0.7, 0.7)
+
+[node name="Sprite2D" type="Sprite2D" parent="club"]
+visible = false
+position = Vector2(0, 18.5)
+texture = ExtResource("3_i3pqv")
+
+[node name="Area2D" type="Area2D" parent="club"]
+position = Vector2(0, 18.5)
+scale = Vector2(0.7, 0.7)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="club/Area2D"]
+position = Vector2(-3.34059, -15.7039)
+rotation = -0.129989
+scale = Vector2(0.7, 0.7)
+shape = SubResource("CapsuleShape2D_hqtel")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_1jxqw")
+}
+
+[connection signal="body_entered" from="club/Area2D" to="." method="_on_area_2d_body_entered"]

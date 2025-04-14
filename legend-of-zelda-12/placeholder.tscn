@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://bf4nricsrle4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_tchlg"]
+font_size = 40
+
+[node name="placeholder" type="Label"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "will delete this scene and replace
+with first level or base level
+and then change the path for following:
+get_tree().change_scene_to_file(\"res://placeholder.tscn\")
+in speech_bubble.gd to the correct path
+"
+label_settings = SubResource("LabelSettings_tchlg")

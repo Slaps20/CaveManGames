@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://cyftvtw5dpa2n"]
+
+[ext_resource type="Texture2D" uid="uid://cn5avc734ftdm" path="res://cavernopening.png" id="1_gw8tw"]
+[ext_resource type="Script" uid="uid://bfdgyc6pkrabw" path="res://intro_text.gd" id="2_0b7x6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0b7x6"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_s38p2"]
+font_size = 64
+
+[node name="intro_text" type="TextureRect"]
+texture_filter = 1
+offset_right = 1150.0
+offset_bottom = 652.0
+texture = ExtResource("1_gw8tw")
+script = ExtResource("2_0b7x6")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 459.0
+offset_right = 1148.0
+offset_bottom = 648.0
+text = "You are a caveman who resides in a cave with your wife. You have just
+realized that she is nowhere to be found. You must leave the safety of the
+cave and find her. You may need to battle dangerous animals to save her.
+Be prepared to fight and stay alert! Hint: Press spacebar to swing club."
+label_settings = SubResource("LabelSettings_0b7x6")
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 405.0
+offset_top = 220.0
+offset_right = 754.0
+offset_bottom = 399.0
+text = "Press Enter
+    to Start"
+label_settings = SubResource("LabelSettings_s38p2")

@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://27nl1i8v1l4o"]
+
+[ext_resource type="Texture2D" uid="uid://cn5avc734ftdm" path="res://cavernopening.png" id="1_4okea"]
+[ext_resource type="Script" uid="uid://bo0bfdrjp5inc" path="res://lose_scene.gd" id="2_5lo34"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5lo34"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_1rcl5"]
+font_size = 64
+
+[node name="lose_scene" type="TextureRect"]
+texture_filter = 1
+offset_right = 1150.0
+offset_bottom = 652.0
+texture = ExtResource("1_4okea")
+script = ExtResource("2_5lo34")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -339.5
+offset_top = 300.0
+offset_right = 339.5
+offset_bottom = 345.0
+grow_horizontal = 2
+text = "Oh no! You were not able to save your wife!"
+label_settings = SubResource("LabelSettings_5lo34")
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -199.5
+offset_top = -222.0
+offset_right = 199.5
+offset_bottom = -43.0
+grow_horizontal = 2
+grow_vertical = 0
+text = " Press Enter
+to Play Again"
+label_settings = SubResource("LabelSettings_1rcl5")
